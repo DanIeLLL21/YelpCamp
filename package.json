@@ -1,35 +1,34 @@
 {
-  "name": "yelpfinal",
+  "name": "YelpFINAL",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "@mapbox/mapbox-sdk": "^0.13.2",
     "cloudinary": "^1.26.3",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^3.2.0",
     "dotenv": "^8.6.0",
-    "ejs": "^3.1.6",
     "ejs-mate": "^3.0.0",
     "express": "^4.17.1",
     "express-mongo-sanitize": "^2.1.0",
     "express-session": "^1.17.2",
     "helmet": "^4.6.0",
     "joi": "^17.4.2",
-    "mapbox": "^1.0.0-beta10",
     "method-override": "^3.0.0",
     "mongoose": "^5.13.7",
     "multer": "^1.4.3",
     "multer-storage-cloudinary": "^4.0.0",
+    "mapbox": "^1.0.0-beta10",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^6.1.0",
-    "sanitize-html": "^1.27.5"
+    "sanitize-html": "^1.27.5",
+    "ejs": "^3.1.6"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"node index.js"
+    "starts":"node index.js"
   },
   "keywords": [],
   "author": "",
