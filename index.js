@@ -19,7 +19,7 @@ const userRoutes = require('./routes/users')
 const mongoSanitize = require('express-mongo-sanitize')
 const helmet = require('helmet')
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp';
-const MongoDBStore = require("connect-mongodb-session")(session);
+const MongoDBStore = require("connect-mongo");
 
 
 mongoose.connect(dbUrl,{
@@ -56,23 +56,8 @@ app.use(mongoSanitize())
 const secret = process.env.SECRET || "thishshouldbeabettersecret"
 
 
-const store = new MongoDBStore({
-
-   url:dbUrl,
-   collection:"session",
-   databaseName:"myFirstDatabase"
-
-})
-
-store.on("error",function(e){
-
-    console.log("Session store error",e)
-})
-
-
 const sessionConfig = {
-
-    store:store,
+    
     name:'session',
     secret:secret,
     resave:false,
@@ -83,9 +68,18 @@ const sessionConfig = {
         //secure:true,
         expries: Date.now() + 1000 * 60 * 60 * 24 * 7,
         maxAge:1000 * 60 * 60 * 24 * 7
-    }
+    },
+    store:MongoDBStore.create({
+        mongoUrl:dbUrl,
+        secret:secret
+    })
 
 }
+
+sessionConfig.store.on("error",function(e){
+    console.log("Session error",e)
+})
+
 
 app.use(session(sessionConfig))
 app.use(flash());
