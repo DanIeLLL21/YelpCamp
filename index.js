@@ -1,5 +1,5 @@
 
-    require('dotenv').config();
+    require('dotenv').config({path: '.env'});
 
 
 const express = require('express')
@@ -68,17 +68,10 @@ const sessionConfig = {
         //secure:true,
         expries: Date.now() + 1000 * 60 * 60 * 24 * 7,
         maxAge:1000 * 60 * 60 * 24 * 7
-    },
-    store:MongoDBStore.create({
-        mongoUrl:dbUrl,
-        secret:secret
-    })
-
+    }
 }
 
-sessionConfig.store.on("error",function(e){
-    console.log("Session error",e)
-})
+
 
 
 app.use(session(sessionConfig))
